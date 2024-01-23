@@ -64,7 +64,7 @@ namespace jff_client_oidc_csharp_legacy
             return objReturn;
         }
 
-        public DefaultResponseModel<ReturnEntity> Get<ReturnEntity>(string urlApi, string urlPath)
+        public DefaultResponseModel<ReturnEntity> Get<ReturnEntity>(string baseUrl, string pathUrl)
         {
             var objReturn = new DefaultResponseModel<ReturnEntity>();
             var resultToken = GetToken();
@@ -76,8 +76,8 @@ namespace jff_client_oidc_csharp_legacy
                 {
                     using (WebClient webClient = new WebClient())
                     {
-                        webClient.BaseAddress = urlApi + "/";
-                        var json = webClient.DownloadString(urlPath);
+                        webClient.BaseAddress = baseUrl + "/";
+                        var json = webClient.DownloadString(pathUrl);
                         var objResult = JsonConvert.JsonDeserializer<ReturnEntity>(json);
                         objReturn.Result = objResult;
                         objReturn.Extract(resultToken);
@@ -86,7 +86,7 @@ namespace jff_client_oidc_csharp_legacy
                 catch (Exception ex)
                 {
 
-                    objReturn.ListErrors.Add($"An error has occurred in GET request to '{urlApi}'.");
+                    objReturn.ListErrors.Add($"An error has occurred in GET request to '{baseUrl}/{pathUrl}'.");
                     objReturn.Extract(ex);
                 }
             }
@@ -94,7 +94,7 @@ namespace jff_client_oidc_csharp_legacy
             return objReturn;
         }
 
-        public DefaultResponseModel<ReturnEntity> Post<SendEntity, ReturnEntity>(string urlApi, string pathUrl, SendEntity obj)
+        public DefaultResponseModel<ReturnEntity> Post<SendEntity, ReturnEntity>(string baseUrl, string pathUrl, SendEntity obj)
         {
             var objReturn = new DefaultResponseModel<ReturnEntity>();
             var resultToken = GetToken();
@@ -102,17 +102,17 @@ namespace jff_client_oidc_csharp_legacy
 
             try
             {
-                objReturn.Result = RequestRest.POST<ReturnEntity, SendEntity>(urlApi, pathUrl, obj, accessToken, false);
+                objReturn.Result = RequestRest.POST<ReturnEntity, SendEntity>(baseUrl, pathUrl, obj, accessToken, false);
             }
             catch (Exception ex) {
-                objReturn.ListErrors.Add($"An error has occurred in POST request to '{urlApi}/{pathUrl}'."); 
+                objReturn.ListErrors.Add($"An error has occurred in POST request to '{baseUrl}/{pathUrl}'."); 
                 objReturn.Extract(ex); 
             }
 
             return objReturn;
         }
 
-        public DefaultResponseModel<ReturnEntity> Put<SendEntity, ReturnEntity>(string urlApi, string pathUrl, SendEntity obj)
+        public DefaultResponseModel<ReturnEntity> Put<SendEntity, ReturnEntity>(string baseUrl, string pathUrl, SendEntity obj)
         {
             var objReturn = new DefaultResponseModel<ReturnEntity>();
             var resultToken = GetToken();
@@ -120,29 +120,29 @@ namespace jff_client_oidc_csharp_legacy
 
             try
             {
-                objReturn.Result = RequestRest.PUT<ReturnEntity, SendEntity>(urlApi, pathUrl, obj, accessToken, false);
+                objReturn.Result = RequestRest.PUT<ReturnEntity, SendEntity>(baseUrl, pathUrl, obj, accessToken, false);
             }
             catch (Exception ex)
             {
-                objReturn.ListErrors.Add($"An error has occurred in PUT request to '{urlApi}/{pathUrl}'.");
+                objReturn.ListErrors.Add($"An error has occurred in PUT request to '{baseUrl}/{pathUrl}'.");
                 objReturn.Extract(ex); 
             }
 
             return objReturn;
         }
 
-        public DefaultResponseModel<ReturnEntity> Delete<ReturnEntity>(string urlApi, string pathUrl)
+        public DefaultResponseModel<ReturnEntity> Delete<ReturnEntity>(string baseUrl, string pathUrl)
         {
             var objReturn = new DefaultResponseModel<ReturnEntity>();
             var resultToken = GetToken();
             objReturn.Extract(resultToken);
             try
             {
-                objReturn.Result = RequestRest.PUT<ReturnEntity, object>(urlApi, pathUrl, null, accessToken, false);
+                objReturn.Result = RequestRest.PUT<ReturnEntity, object>(baseUrl, pathUrl, null, accessToken, false);
             }
             catch (Exception ex)
             {
-                objReturn.ListErrors.Add($"An error has occurred in DELETE request to '{urlApi}/{pathUrl}'."); 
+                objReturn.ListErrors.Add($"An error has occurred in DELETE request to '{baseUrl}/{pathUrl}'."); 
                 objReturn.Extract(ex); 
             }
 
