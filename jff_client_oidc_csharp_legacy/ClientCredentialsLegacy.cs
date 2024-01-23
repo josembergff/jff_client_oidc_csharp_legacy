@@ -42,6 +42,7 @@ namespace jff_client_oidc_csharp_legacy
                             var objToken = JsonConvert.JsonDeserializer<DefaultConfigTokenModel>(json);
                             var resultToken = getTokenValue(objToken.token_endpoint);
                             objReturn.Extract(resultToken);
+                            objReturn.Result = accessToken;
                         }
                     }
                     catch (Exception ex)
