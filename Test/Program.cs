@@ -22,9 +22,17 @@ namespace Test
 
             if (token.Success)
             {
-                var resultAPI = client.Get<dynamic>("https://localhost:3000", "/products");
+                var resultAPI = client.Get<dynamic>("https://localhost:62862", "/products");
 
-                Console.WriteLine(resultAPI.Result.ToString());
+                if (resultAPI.Success)
+                {
+                    Console.WriteLine(resultAPI.Result.ToString());
+                }
+                else
+                {
+                    Console.WriteLine(resultAPI.Error);
+                    Console.WriteLine(string.Join(";", resultAPI.ListErrors));
+                }
             }
             else
             {

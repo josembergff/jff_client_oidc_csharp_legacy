@@ -73,6 +73,8 @@ namespace jff_client_oidc_csharp_legacy
                     using (WebClient webClient = new WebClient())
                     {
                         webClient.BaseAddress = baseUrl + "/";
+                        webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        webClient.Headers[HttpRequestHeader.Authorization] = $"Bearer {accessToken}";
                         var json = webClient.DownloadString(pathUrl);
                         var objResult = JsonConvert.JsonDeserializer<ReturnEntity>(json);
                         objReturn.Result = objResult;
