@@ -5,7 +5,7 @@ using System.Text;
 
 namespace jff_client_oidc_csharp_legacy.Tools
 {
-    public static class JsonConverter
+    public static class JsonConvert
     {
         public static T JsonDeserializer<T>(string jsonString)
         {

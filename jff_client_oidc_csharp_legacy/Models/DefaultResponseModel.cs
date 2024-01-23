@@ -34,7 +34,7 @@ namespace jff_client_oidc_csharp_legacy.Models
 
         public void Extract<TExtract>(DefaultResponseModel<TExtract> ex = null)
         {
-            if (ex != null && !ex.Success)
+            if (ex != null || !ex.Success)
             {
                 Error = ex.Error;
                 StackTrace = ex.StackTrace;
