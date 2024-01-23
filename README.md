@@ -1,5 +1,5 @@
-# Client OIDC C#
-Simple client for request OIDC token and requests. Having the .net framework 4.7.
+# Client OIDC C# Legacy
+Simple client for request OIDC token and requests. Having the .net framework 4.0.
 
 ## Install Package Manager
 
