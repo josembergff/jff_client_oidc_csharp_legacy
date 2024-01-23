@@ -6,12 +6,18 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
+    <license type="file">LICENSE.txt</license>
     <!-- <icon>icon.png</icon> -->
     <projectUrl>https://www.nuget.org/packages/jff-client-oidc-csharp_legacy</projectUrl>
+    <repository type="git" url="https://github.com/josembergff/jff_client_oidc_csharp_legacy" branch="main" />
     <description>$description$</description>
     <releaseNotes></releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>oidc c# openid token auth2</tags>
+    <readme>README.md</readme>
   </metadata>
+  <files>
+    <file src="..\LICENSE.txt" target="" />
+    <file src="..\README.md" target="" />
+  </files>
 </package>
