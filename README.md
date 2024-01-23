@@ -36,6 +36,22 @@ namespace ExampleConnectOIDC
         public string GetToken(){
             return client.GetToken();
         }
+
+        public dynamic GetApiRest(string url){
+            return client.Get<dynamic>(url);
+        }
+
+        public dynamic PostApiRest(string url, dynamic objSend){
+            return client.Post<dynamic, dynamic>(url, objSend);
+        }
+
+        public dynamic PutApiRest(string url, dynamic objSend){
+            return client.Put<dynamic, dynamic>(url, objSend);
+        }
+
+        public dynamic DeleteApiRest(string url){
+            return client.Delete<dynamic>(url);
+        }
     }
  }
 ```
